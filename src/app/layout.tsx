@@ -1,0 +1,37 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Navigation } from "@/components/Navigation";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "NYC Tech Week — Your AI Insider Guide",
+  description: "The insider's guide to NYC Tech Week 2026. AI-curated recommendations, neighborhood guides, and personalized schedules for the AI community.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Navigation />
+        <main className="flex-1">{children}</main>
+      </body>
+    </html>
+  );
+}
